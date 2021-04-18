@@ -16,17 +16,13 @@ function createWindow() {
 		height: 800,
 		backgroundColor: 'white',
 		webPreferences: {
-			nodeIntegration: false,
+			nodeIntegration: true,
 			worldSafeExecuteJavaScript: true,
-			contextIsolation: true,
+			contextIsolation: false,
 			preload: path.join(__dirname, 'preload.js'),
 		},
 	});
 	win.loadFile('index.html');
 }
-
-ipcMain.on('notify', (event, message) => {
-	new Notification({title: 'Notification', body: message }).show();
-});
 
 app.whenReady().then(createWindow);
